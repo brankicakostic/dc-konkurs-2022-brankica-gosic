@@ -3,7 +3,7 @@ import logo from "./../assets/logo.svg";
 import eyeIcon from "./../assets/EyeIcon.svg";
 import { signin } from "../api-auth";
 import { AUTH_TOKEN } from "../constants";
-import { PageContent, PageContentWrapper } from "../styledComponents/LoginPage";
+import { FormHeader, PageContent, PageContentWrapper } from "../styledComponents/LoginPage";
 
 const Login = () => {
   const [values, setValues] = useState({
@@ -26,7 +26,7 @@ const Login = () => {
       } else {
         setValues({ ...values, error: "", redirectToReferrer: true });
         sessionStorage.setItem(AUTH_TOKEN, data.token);
-        window.location.reload(true)
+        window.location.reload(true);
       }
     });
   };
@@ -42,9 +42,11 @@ const Login = () => {
   return (
     <PageContent>
       <PageContentWrapper>
-        <img className="logo" alt="logo" src={logo} />
-        <h3>Welcome</h3>
-        <p>Fill in the fields to continue</p>
+        <FormHeader>
+          <img className="logo" alt="logo" src={logo} />
+          <h3>Welcome</h3>
+          <p>Fill in the fields to continue</p>
+        </FormHeader>
         <div className="input-container-form">
           <input
             value={values.username}

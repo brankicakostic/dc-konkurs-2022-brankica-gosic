@@ -16,4 +16,7 @@ export const PageContentWrapper = styled.div`
   margin: 0 auto;
 `;
 
-
+export const FormHeader = styled.div`
+  text-align: center;
+  margin-bottom: 63.5px;
+`;

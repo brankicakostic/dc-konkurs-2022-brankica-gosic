@@ -10,9 +10,11 @@ import { Distance } from "../styledComponents/ContryDistancePage";
 import { City } from "../styledComponents/ContryDistancePage";
 import { Result } from "../styledComponents/ContryDistancePage";
 import { Content } from "../styledComponents/ContryDistancePage";
+import { sortItems } from "../function";
 
 const Country = () => {
   const [countries, setCountries] = useState([]);
+  const [cities, setCities] = useState([])
   const [activeSuggestion, setActiveSuggestion] = useState(0);
   const [filterdSugestion, setFilterdSugestion] = useState([]);
   const [showSugestions, setShowSugestions] = useState(false);
@@ -39,7 +41,8 @@ const Country = () => {
     setInput(sugest.name);
     setShowSugestions(false);
     console.log(sugest.id);
-    getcities(sugest.id).then((data) => console.log(data));
+    getcities(sugest.id).then((data) => sortItems(data));
+    
   };
 
   const cleanInputHandler = () => {
