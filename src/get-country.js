@@ -1,4 +1,5 @@
 import React from "react";
+import { AUTH_TOKEN } from "./constants";
 
 const getcountry = () => {
   return fetch(
@@ -7,7 +8,7 @@ const getcountry = () => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        Authorization: `Bearer ${sessionStorage.getItem(AUTH_TOKEN)}`,
       },
     },
   )
@@ -24,7 +25,7 @@ const getcities = (city) => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        Authorization: `Bearer ${sessionStorage.getItem(AUTH_TOKEN)}`,
       },
     },
   )

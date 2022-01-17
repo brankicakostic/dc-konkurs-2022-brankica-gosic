@@ -1,6 +1,11 @@
 import styled from "styled-components";
 
-export const PageContent = styled.div``;
+export const PageContent = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+`;
 
 export const PageContentWrapper = styled.div`
   width: 328px;

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import logo from "./logo.svg";
-import eyeIcon from "./EyeIcon.svg";
-import { signin } from "./api-auth";
-import { AUTH_TOKEN } from "./constants";
-import { PageContent, PageContentWrapper } from "./styledComponents/LoginPage";
+import logo from "./../assets/logo.svg";
+import eyeIcon from "./../assets/EyeIcon.svg";
+import { signin } from "../api-auth";
+import { AUTH_TOKEN } from "../constants";
+import { PageContent, PageContentWrapper } from "../styledComponents/LoginPage";
 
 const Login = () => {
   const [values, setValues] = useState({
@@ -24,8 +24,9 @@ const Login = () => {
       if (data.error) {
         setValues({ ...values, error: data.error });
       } else {
-        setValues({ ...values, error: "" });
+        setValues({ ...values, error: "", redirectToReferrer: true });
         sessionStorage.setItem(AUTH_TOKEN, data.token);
+        window.location.reload(true)
       }
     });
   };
@@ -34,20 +35,24 @@ const Login = () => {
     setValues({ ...values, [name]: event.target.value });
   };
 
+  /* if (values.redirectToReferrer) {
+    return window.location.reload("/");
+  } */
+
   return (
     <PageContent>
       <PageContentWrapper>
         <img className="logo" alt="logo" src={logo} />
         <h3>Welcome</h3>
         <p>Fill in the fields to continue</p>
-        <div className="input-container">
+        <div className="input-container-form">
           <input
             value={values.username}
             onChange={handleChange("username")}
             name="username"
           ></input>
         </div>
-        <div className="input-container">
+        <div className="input-container-form">
           <input
             type={showPassword ? "text" : "password"}
             value={values.password}

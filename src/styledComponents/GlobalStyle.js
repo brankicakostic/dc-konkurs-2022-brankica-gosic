@@ -6,12 +6,7 @@ html {
    font-family: 'DejaVu Sans, sans-serif'
 }
 body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   min-height: 100%;
-  box-sizing: border-box;
-}
 }
 
 h3 {
@@ -20,9 +15,8 @@ h3 {
     margin-bottom: 8.5px;
 }
 p {
-    margin-top: 0;
+    margin: 0;
     font-size: 14px;
-    padding-bottom: 63px;
 }
 
 input {
@@ -37,9 +31,13 @@ input {
   
 }  
 .input-container {
-    position: relative;
-    width: 100%;
-    margin-bottom: 28px;
+  position: relative;
+  width: 100%;
+}
+.input-container-form{
+  position: relative;
+  width: 100%;
+  margin-bottom: 28px;
 }
 
 .input-icon {
