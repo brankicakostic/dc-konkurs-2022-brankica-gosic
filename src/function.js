@@ -28,7 +28,7 @@ export function sortItems(items) {
   }
   console.log(arranged);  */
 
-  haversine(items.)
+  //haversine(items.)
 }
 
 function haversine(first,sec) {
