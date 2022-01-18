@@ -10,15 +10,16 @@ import { Distance } from "../styledComponents/ContryDistancePage";
 import { City } from "../styledComponents/ContryDistancePage";
 import { Result } from "../styledComponents/ContryDistancePage";
 import { Content } from "../styledComponents/ContryDistancePage";
-import { sortItems } from "../function";
+import { haversine, sortItems } from "../function";
 
 const Country = () => {
   const [countries, setCountries] = useState([]);
-  const [cities, setCities] = useState([])
+  const [cities, setCities] = useState([]);
   const [activeSuggestion, setActiveSuggestion] = useState(0);
   const [filterdSugestion, setFilterdSugestion] = useState([]);
   const [showSugestions, setShowSugestions] = useState(false);
   const [input, setInput] = useState("");
+  const [results, setResults] = useState([]);
 
   useEffect(() => {
     getcountry().then((data) => setCountries(data));
@@ -40,16 +41,52 @@ const Country = () => {
   const onSuggestHandler = (sugest) => {
     setInput(sugest.name);
     setShowSugestions(false);
-    console.log(sugest.id);
-    getcities(sugest.id).then((data) => sortItems(data));
-    
+    //console.log(sugest.id);
+    getcities(sugest.id).then((data) => {
+      let comparedCities = [];
+      for (let i = 0; i < sortItems(data).length; i++) {
+        for (let j = 0; j < sortItems(data).length; j++) {
+          if (i == j) {
+            //to do code here
+
+            continue;
+          }
+          /*   console.log(
+            data[i].name +
+              "-" +
+              data[j].name +
+              " " +
+              haversine(data[i].lat, data[i].lon, data[j].lat, data[j].lon),
+          ); */
+          comparedCities.push({
+            cities: data[i].name + "-" + data[j].name,
+            distance: haversine(
+              data[i].lat,
+              data[i].lon,
+              data[j].lat,
+              data[j].lon,
+            ),
+          });
+        }
+      }
+      comparedCities.sort((a, b) => a.distance - b.distance);
+      setResults([{
+        closes: comparedCities[0],
+        furthest: comparedCities[comparedCities.length - 1],
+      }]);
+      /* console.log(
+        comparedCities[0] + " " + comparedCities[comparedCities.length - 1],
+      ); */
+    });
   };
 
   const cleanInputHandler = () => {
     setInput("");
     setShowSugestions(false);
+    setResults([])
   };
 
+  //console.log(results && results.length && JSON.stringify(results));
   return (
     <>
       <Header>
@@ -82,18 +119,20 @@ const Country = () => {
           )}
         </div>
       </Header>
-      <Content>
-        <Result>
-          <p>{`Closes city in ` + input}</p>
-          <City>Kiel - Lubeck</City>
-          <Distance>{"Distance 147km"}</Distance>
-        </Result>
-        <Result>
-          <p>{`Furthest cities apart in ` + input}</p>
-          <City>Kiel - Lubeck</City>
-          <Distance>{"Distance 673km"}</Distance>
-        </Result>
-      </Content>
+      {results && results.length !== 0 && (
+        <Content>
+          <Result>
+            <p>{`Closes city in ` + input}</p>
+            <City>{results[0].closes.cities}</City>
+            <Distance>{"Distance " + results[0].closes.distance +"km"}</Distance>
+          </Result>
+          <Result>
+            <p>{`Furthest cities apart in ` + input}</p>
+            <City>{results[0].furthest.cities}</City>
+            <Distance>{"Distance " + results[0].furthest.distance +"km"}</Distance>
+          </Result>
+        </Content>
+      )}
     </>
   );
 };

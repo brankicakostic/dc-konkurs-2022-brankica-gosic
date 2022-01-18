@@ -6,7 +6,7 @@ export function sortItems(items) {
     return a.lat === b.lat ? parseFloat(a.lon) - parseFloat(b.lon) : parseFloat(a.lat) - parseFloat(b.lat);
     //return Math.hypot(a.lat, a.lon) - Math.hypot(b.lat, b.lon);
   });
-  console.log(items);
+ return items;
 
   
    /* for (var i = 0; i < items.length; i++) {
@@ -31,7 +31,7 @@ export function sortItems(items) {
   //haversine(items.)
 }
 
-function haversine(first,sec) {
+function haversine1(first,sec) {
   const R = 6371e3; // metres
   const φ1 = (first.lat1 * Math.PI) / 180; // φ, λ in radians
   const φ2 = (sec.lat2 * Math.PI) / 180;
@@ -52,7 +52,7 @@ function deg2rad(degrees) {
   return radians;
 }
 
-function Haversine(lat1, lon1, lat2, lon2) {
+export function haversine(lat1, lon1, lat2, lon2) {
   let deltaLat = lat2 - lat1;
   let deltaLon = lon2 - lon1;
   let earthRadius = 3959; // in miles 6371 in meters.
