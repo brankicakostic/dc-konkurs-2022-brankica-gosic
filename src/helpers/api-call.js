@@ -1,9 +1,8 @@
-import React from "react";
-import { AUTH_TOKEN } from "./constants";
+import { AUTH_TOKEN, API_URL } from "./constants";
 
 const getcountry = () => {
   return fetch(
-    "https://geo.konkurs2022.digitalcube.dev/api/countries/?fields=id,name&no_paginate=true&order_by=name",
+    API_URL + "/countries/?fields=id,name&no_paginate=true&order_by=name",
     {
       method: "GET",
       headers: {
@@ -20,7 +19,8 @@ const getcountry = () => {
 
 const getcities = (city) => {
   return fetch(
-    `https://geo.konkurs2022.digitalcube.dev/api/countries/${city}/cities?fields=id,name,lat,lon&no_paginate=true`,
+    API_URL +
+      `/countries/${city}/cities?fields=id,name,lat,lon&no_paginate=true`,
     {
       method: "GET",
       headers: {

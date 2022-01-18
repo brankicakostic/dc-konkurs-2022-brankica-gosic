@@ -47,6 +47,13 @@ input {
     cursor: pointer;
 }
 
+.suggestion-active
+{
+  cursor: pointer;
+  color: white;
+  background: #9a9a9a;
+}
+
 .logo { 
   height: 63px;
   text-align: center;

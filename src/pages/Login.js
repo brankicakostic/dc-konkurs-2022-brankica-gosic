@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import logo from "./../assets/logo.svg";
 import eyeIcon from "./../assets/EyeIcon.svg";
-import { signin } from "../api-auth";
-import { AUTH_TOKEN } from "../constants";
-import { FormHeader, PageContent, PageContentWrapper } from "../styledComponents/LoginPage";
+import { signin } from "../helpers/api-auth";
+import { AUTH_TOKEN } from "../helpers/constants";
+import {
+  FormHeader,
+  PageContent,
+  PageContentWrapper,
+} from "../styledComponents/LoginPage";
 
 const Login = () => {
   const [values, setValues] = useState({

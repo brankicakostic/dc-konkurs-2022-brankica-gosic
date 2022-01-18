@@ -39,6 +39,7 @@ export const ListElement = styled.div`
     color: white;
     background: #9a9a9a;
   }
+  
 `;
 
 export const Result = styled.div`
