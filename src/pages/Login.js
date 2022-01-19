@@ -11,8 +11,8 @@ import {
 
 const Login = () => {
   const [values, setValues] = useState({
-    username: "brankica.gosic@gmail.com",
-    password: "n56Xwrto",
+    username: "",
+    password: "",
     error: "",
     redirectToReferrer: false,
   });
